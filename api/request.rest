@@ -1,0 +1,21 @@
+GET http://localhost:300/todos
+
+###
+
+POST http://localhost:300/todo/new
+Content-Type: application/json
+
+{
+    "text" : "aaaaadf"
+}
+
+
+###
+
+
+
+DELETE http://localhost:300/todo/delete/646353c66849d0d109278fe2
+
+###
+
+PUT  http://localhost:300/todo/complete/646354c79ffd9de51b0c2ba9
