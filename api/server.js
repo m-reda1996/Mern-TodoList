@@ -21,11 +21,11 @@ app.get("/todos", async (req, res) => {
   res.json(todos);
 });
 
-app.post("/todo/new", (req, res) => {
+app.post("/todo/new", async (req, res) => {
   const todo = new Todo({
     text: req.body.text,
   });
-  todo.save();
+  await todo.save();
   res.json(todo);
 });
 
@@ -37,11 +37,16 @@ app.delete("/todo/delete/:id", async (req, res) => {
 });
 
 app.get("/todo/complete/:id", async (req, res) => {
-  const { id } = req.params;
-  const todo = await Todo.findById(id);
-  todo.complete = !todo.complete;
-  todo.save()
-  res.json(todo)
-});
+  const { id } = req.params
+  const todo = await Todo.findById(id)
+  if (todo) {
+    todo.complete = !todo.complete
+    await todo.save()
+    res.json(todo)
+  } else {
+    res.json({ error: "Todo not found" })
+  }
+})
 
-app.listen(300, () => console.log("started"));
+
+app.listen(3000, () => console.log("started"));
