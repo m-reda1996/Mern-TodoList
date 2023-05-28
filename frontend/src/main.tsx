@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { App, Contact } from "./App.js";
+import { App } from "./App.js";
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Error } from "./Error.js";
 import { NewTodo } from "./NewTodo.js";
+import { Todo } from "./todo.js";
 
  const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Contact />,
+        element: <Todo />,
       },
       {
         path : '/new',

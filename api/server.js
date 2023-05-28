@@ -37,16 +37,15 @@ app.delete("/todo/delete/:id", async (req, res) => {
 });
 
 app.get("/todo/complete/:id", async (req, res) => {
-  const { id } = req.params
-  const todo = await Todo.findById(id)
+  const { id } = req.params;
+  const todo = await Todo.findById(id);
   if (todo) {
-    todo.complete = !todo.complete
-    await todo.save()
-    res.json(todo)
+    todo.complete = !todo.complete;
+    await todo.save();
+    res.json(todo);
   } else {
-    res.json({ error: "Todo not found" })
+    res.json({ error: "Todo not found" });
   }
-})
-
+});
 
 app.listen(3000, () => console.log("started"));
