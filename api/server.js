@@ -48,4 +48,14 @@ app.get("/todo/complete/:id", async (req, res) => {
   }
 });
 
+app.get("/todo/:id" ,async (req,res) => {
+  const {id} = req.params;
+  const todo = await Todo.findById(id);
+ if(todo) {
+  res.json(todo);
+ }else {
+  res.json({error:'asdfs'})
+ }
+})
+
 app.listen(3000, () => console.log("started"));

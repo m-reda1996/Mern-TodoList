@@ -1,39 +1,39 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { App } from "./App.js";
 import "./index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Error } from "./Error.js";
-import { NewTodo } from "./NewTodo.js";
-import { Todo } from "./todo.js";
+import { App, Error, NewTodo, Todo, Todos } from ".";
 
- const queryClient = new QueryClient({
+const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnMount:false,
-      refetchOnWindowFocus: false
-    }
-  }
- });
- 
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    errorElement : <Error />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
-        element: <Todo />,
+        element: <Todos />,
       },
       {
-        path : '/new',
-        element: <NewTodo />
-      }
+        path: "/new",
+        element: <NewTodo />,
+      },
+      {
+        path: "/todo/:id",
+        element: <Todo />,
+      },
     ],
   },
- 
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
@@ -43,4 +43,3 @@ ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     </QueryClientProvider>
   </React.StrictMode>
 );
-

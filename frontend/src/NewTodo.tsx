@@ -17,7 +17,7 @@ function useAddTodo() {
   return useMutation<Todo, unknown, { text: string; complete?: boolean }>(
     (todo) => {
       return fetch(API_BASE + "/todo/new", {
-        method: "POST",
+        method: "post",
         headers: { "content-Type": "application/json" },
         body: JSON.stringify(todo),
       }).then((res) => res.json());
